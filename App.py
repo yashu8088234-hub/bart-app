@@ -237,7 +237,7 @@ with col2b:
         st.write("COMING SOON")
 with col3b:
     if st.button("Manager Login", use_container_width=True):
-        st.switch_page("pages/manager_dashboard")
+        st.switch_page("pages/manager_dashboard.py")
 
 # ---------------- Section 2 ----------------
 st.markdown("""
@@ -255,5 +255,6 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
