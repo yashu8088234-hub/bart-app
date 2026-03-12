@@ -52,10 +52,12 @@ st.markdown("<h1 style='text-align:center; color:red; font-size:70px;'>Daily Sto
 # ---------------- Google Sheets Setup ----------------
 try:
     scope = [
-        "https://spreadsheets.google.com/feeds",
-        "https://www.googleapis.com/auth/drive"
-    ]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+"https://spreadsheets.google.com/feeds",
+"https://www.googleapis.com/auth/drive"
+]
+
+creds = ServiceAccountCredentials.from_json_keyfile_dict(
+    st.secrets["gcp_service_account"], scope)
     client = gspread.authorize(creds)
     sheet = client.open("Master Inventory").sheet1
 except Exception as e:
@@ -226,4 +228,5 @@ if st.button("Submit Pending Updates"):
 # ---------------- Back Button ----------------
 if st.button("⬅ Back"):
     st.switch_page("pages/staff_dashboard.py")
+
    # st.experimental_rerun()  # refresh page when going back
