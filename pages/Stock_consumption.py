@@ -185,4 +185,5 @@ if st.button("Submit Pending Updates"):
 
 # ---------------- Back Button ----------------
 if st.button("⬅ Back"):
-    st.experimental_rerun()
+    st.switch_page("pages/Staff_dashboard.py")
+
