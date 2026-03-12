@@ -26,7 +26,9 @@ scope = [
 ]
 
 try:
-    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(
+        st.secrets["gcp_service_account"], scope
+    )
     client = gspread.authorize(creds)
     sheet = client.open("Master Inventory").worksheet("Daily Sales")
 except Exception as e:
@@ -121,4 +123,5 @@ with chart2:
 
 # ---------------- Back Button ----------------
 if st.button("⬅ Back"):
+
     st.switch_page("pages/staff_dashboard.py")
