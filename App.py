@@ -231,13 +231,13 @@ with col3:
 col1b, col2b, col3b = st.columns([1,1,1])
 with col1b:
     if st.button("Staff Login", use_container_width=True):
-        st.switch_page("staff_dashboard.py")
+        st.switch_page("staff_dashboard")
 with col2b:
     if st.button("Management Login", use_container_width=True):
         st.write("COMING SOON")
 with col3b:
     if st.button("Manager Login", use_container_width=True):
-        st.switch_page("manager_dashboard.py")
+        st.switch_page("manager_dashboard")
 
 # ---------------- Section 2 ----------------
 st.markdown("""
@@ -255,3 +255,4 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
