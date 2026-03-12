@@ -41,17 +41,18 @@ col1,col2,col3 = st.columns(3)
 
 with col1:
     if st.button("Daily Stock Consumption"):
-        st.switch_page("pages/stock_consumption.py")
+        st.switch_page("pages/Stock_consumption.py")
 
 with col2:
     if st.button("Daily Sales Report"):
-        st.switch_page("pages/daily_sales.py")
+        st.switch_page("pages/Daily_sales.py")
 
 with col3:
     if st.button("New Stock Report"):
-        st.switch_page("pages/new_stock.py")
+        st.switch_page("pages/New_stock.py")
 
 st.write("")
 
 if st.button("⬅ Back"):
+
     st.switch_page("app.py")
