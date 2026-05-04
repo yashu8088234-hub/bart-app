@@ -3,7 +3,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from rapidfuzz import process, fuzz
 from datetime import datetime
-import time
 
 # ---------------- Page Config ----------------
 st.set_page_config(layout="wide", page_title="BART - Daily Sales")
@@ -100,19 +99,15 @@ for item_name, qty, price in sales_today:
         best_matches = [m for m in matches if m[1] > 70]
 
         if not best_matches:
-
             st.warning(f"Item '{item_name}' not recognized")
 
         elif len(best_matches) == 1:
-
             st.session_state.pending_sales.append(
                 (best_matches[0][0], qty, price)
             )
-
             st.success(f"{best_matches[0][0]} added automatically")
 
         else:
-
             options = [m[0] for m in best_matches]
 
             st.session_state.confirm_items[item_name] = st.radio(
@@ -137,7 +132,6 @@ if st.session_state.confirm_items:
             )
 
         st.success("Items confirmed")
-
         st.session_state.confirm_items.clear()
 
 # ---------------- Show Pending ----------------
@@ -165,7 +159,7 @@ def safe_append(row):
         except Exception as e:
 
             if attempt < 2:
-                time.sleep(2)
+                continue   # removed time.sleep
             else:
                 st.error(f"Google API error: {e}")
                 return False
@@ -188,9 +182,6 @@ if st.button("Submit Pending Sales"):
         st.success("Sales successfully uploaded to Google Sheet ✅")
         st.session_state.pending_sales = []
 
-# ---------------- Back Button (FIXED) ----------------
+# ---------------- Back Button ----------------
 if st.button("⬅ Back"):
-    try:
-        st.switch_page("pages/staff_dashboard.py")
-    except Exception as e:
-        st.error(f"Navigation error: {e}")
+    st.switch_page("pages/staff_dashboard.py")
