@@ -165,7 +165,7 @@ def safe_append(row):
         except Exception as e:
 
             if attempt < 2:
-                time.sleep(2)  # retry delay
+                time.sleep(2)
             else:
                 st.error(f"Google API error: {e}")
                 return False
@@ -188,6 +188,9 @@ if st.button("Submit Pending Sales"):
         st.success("Sales successfully uploaded to Google Sheet ✅")
         st.session_state.pending_sales = []
 
-# ---------------- Back Button ----------------
+# ---------------- Back Button (FIXED) ----------------
 if st.button("⬅ Back"):
-    st.switch_page("pages/staff_dashboard.py")
+    try:
+        st.switch_page("pages/staff_dashboard.py")
+    except Exception as e:
+        st.error(f"Navigation error: {e}")
